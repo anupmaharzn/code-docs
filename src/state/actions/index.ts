@@ -32,8 +32,27 @@ export interface UpdateCellAction {
   };
 }
 
+export interface BundleStartAction {
+  type: ActionType.BUNDLE_START;
+  payload: {
+    cellId: string;
+  };
+}
+export interface BundleCompleteAction {
+  type: ActionType.BUNDLE_COMPELTE;
+  payload: {
+    bundle: {
+      code: string;
+      err: string;
+    };
+    cellId: string;
+  };
+}
+
 export type Action =
   | MoveCellAction
   | DeleteCellAction
   | InsertCellAfterAction
-  | UpdateCellAction;
+  | UpdateCellAction
+  | BundleStartAction
+  | BundleCompleteAction;

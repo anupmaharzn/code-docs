@@ -1,11 +1,14 @@
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state";
-
+import { useMemo } from "react";
 export const useActions = () => {
   const dispatch = useDispatch();
-
-  return bindActionCreators(actionCreators, dispatch);
+  //to avoid rerendering
+  //only render(recalcuate) when dispatch changes otherwise do nothing just return prev calc value
+  return useMemo(() => {
+    return bindActionCreators(actionCreators, dispatch);
+  }, [dispatch]);
 };
 
 // how to use it
